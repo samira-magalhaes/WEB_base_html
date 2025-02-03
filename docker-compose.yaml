@@ -3,11 +3,6 @@ services:
     build: ./app
     container_name: base_app # alterar para seu projeto
     restart: always
-    environment:
-      - DB_HOST=db
-      - DB_USER=${MYSQL_USER}
-      - DB_PASSWORD=${MYSQL_PASSWORD}
-      - DB_NAME=${MYSQL_DATABASE}
     networks:
       - mynetwork
     volumes:
@@ -38,6 +33,8 @@ services:
       - ./db/.env
     volumes:
       - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
     networks:
       - mynetwork
     healthcheck:
